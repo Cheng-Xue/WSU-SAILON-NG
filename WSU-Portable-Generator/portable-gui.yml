@@ -56,19 +56,4 @@ services:
       - pgdb
       - mockn-ta1
 
-  # The vizdoom service.
-  # We use a custom service name for each service variant so we can have multiple versions
-  # running at the same time, just with slightly modified docker-compose files.
-  mockn-gen-vizdoom:
-    build:
-      context: ./
-      dockerfile: Dockerfile-PARTIAL-GENERATOR
-    command: python -u GENERATOR.py --domain=vizdoom --config=config/generator.config --printout
-    restart: always
-    links:
-      - rabbit
-    depends_on:
-      - rabbit
-      - pgdb
-      - mockn-ta1
 
